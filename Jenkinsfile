@@ -2,7 +2,12 @@ pipeline {
     agent any
     stages {
         stage('BUILD Package') {
-            agent { docker 'maven:3.9.3-eclipse-temurin-17' }
+            agent { 
+                docker {
+                    image 'maven:3.9.3-eclipse-temurin-17' 
+                    reuseNode true
+                }
+            }
             steps {
                 echo "Building Package...."
                 sh "mvn clean package -DskipTests=True"
