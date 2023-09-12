@@ -12,8 +12,10 @@ pipeline {
             agent { docker 'maven:3.9.3-eclipse-temurin-17' }
             steps {
                 echo "Building image...."
-                def customImage = docker.build("spring-boot-hello-world:${env.BUILD_ID}")
-                customImage.push()
+                script {
+                    def customImage = docker.build("spring-boot-hello-world:${env.BUILD_ID}")
+                    customImage.push()
+                }
             }
         }
     }
