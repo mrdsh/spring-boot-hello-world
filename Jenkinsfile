@@ -18,8 +18,9 @@ pipeline {
                 echo "Building image...."
                 sh "tree"
                 script {
-                    def customImage = docker.build("spring-boot-hello-world:${env.BUILD_ID}")
+                    def customImage = docker.build("mrdash/spring-boot-hello-world:${env.BUILD_ID}")
                     customImage.push()
+                    customImage.push('latest')
                 }
             }
         }
