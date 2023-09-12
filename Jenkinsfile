@@ -1,11 +1,19 @@
 pipeline {
     agent any
     stages {
-        stage('BUILD') {
+        stage('BUILD Package') {
             agent { docker 'maven:3.9.3-eclipse-temurin-17' }
             steps {
-                echo "Building...."
+                echo "Building Package...."
                 sh "mvn clean package -DskipTests=True"
+            }
+        }
+        stage('BUILD Image') {
+            agent { docker 'maven:3.9.3-eclipse-temurin-17' }
+            steps {
+                echo "Building image...."
+                def customImage = docker.build("spring-boot-hello-world:${env.BUILD_ID}")
+                customImage.push()
             }
         }
     }
