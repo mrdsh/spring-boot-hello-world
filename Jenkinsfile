@@ -14,7 +14,7 @@ pipeline {
                 echo "Building image...."
                 script {
                     def customImage = docker.build("spring-boot-hello-world:${env.BUILD_ID}")
-                    customImage.push()
+                    // customImage.push()
                 }
             }
         }
