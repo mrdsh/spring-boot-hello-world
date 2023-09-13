@@ -23,6 +23,6 @@ spec:
           requests:
             memory: 256Mi
             cpu: 250m
-        image: spring-boot-hello-world:$BUILD_NUM
+        image: spring-boot-hello-world:$BUILD_ID
         ports:
         - containerPort: 9090
