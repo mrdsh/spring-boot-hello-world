@@ -28,7 +28,7 @@ pipeline {
         stage('DEPLOY') {
             steps {
                 script {
-                    withKubeConfig([credentialsId: 'user1']) {
+                    withKubeConfig([credentialsId: 'kube_config']) {
                         sh "kubectl get po"
                     }
                 }
