@@ -13,7 +13,7 @@ $ cd spring-boot-hello-world
 $ mvn spring-boot:run
 
 # test
-curl localhost:8080
+curl localhost:9090
 
 ```
 
