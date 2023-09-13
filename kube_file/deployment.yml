@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-hello-world-deployment
+  labels:
+    app: spring-boot-hello-world
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-boot-hello-world
+  template:
+    metadata:
+      labels:
+        app: spring-boot-hello-world
+    spec:
+      containers:
+      - name: spring-boot-hello-world
+        resources:
+          limits:
+            memory: 512Mi
+            cpu: 500m
+          requests:
+            memory: 256Mi
+            cpu: 250m
+        image: spring-boot-hello-world:${env.BUILD_ID}
+        ports:
+        - containerPort: 9090

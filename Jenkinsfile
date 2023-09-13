@@ -16,12 +16,20 @@ pipeline {
         stage('BUILD Image') {
             steps {
                 echo "Building image...."
-                sh "tree"
                 script {
                     docker.withRegistry('https://index.docker.io/v1/', 'docker_hub') {
                         def customImage = docker.build("mrdash/spring-boot-hello-world:${env.BUILD_ID}")
                         customImage.push()
                         customImage.push('latest')
+                    }
+                }
+            }
+        }
+        stage('DEPLOY') {
+            steps {
+                script {
+                    withKubeConfig([credentialsId: 'user1']) {
+                        sh "kubectl get po"
                     }
                 }
             }
