@@ -1,6 +1,5 @@
 apiVersion: apps/v1
 kind: Deployment
-namespace: my-app
 metadata:
   name: spring-boot-hello-world-deployment
   labels:

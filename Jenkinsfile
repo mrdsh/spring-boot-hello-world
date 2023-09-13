@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     withKubeConfig([credentialsId: 'kube_config']) {
-                        sh "kubectl apply -f kube_files/*"
+                        sh "kubectl apply -n my_app -f kube_file"
                     }
                 }
             }
