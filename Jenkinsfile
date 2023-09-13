@@ -28,8 +28,9 @@ pipeline {
         stage('DEPLOY') {
             steps {
                 script {
+                    def BUILD_NUM = ${env.BUILD_ID}
                     withKubeConfig([credentialsId: 'kube_config']) {
-                        sh "kubectl apply -n my_app -f kube_file"
+                        sh "kubectl apply -n my-apps -f kube_file"
                     }
                 }
             }
