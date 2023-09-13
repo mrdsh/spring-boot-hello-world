@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     withKubeConfig([credentialsId: 'kube_config']) {
-                        sh "kubectl get po"
+                        sh "kubectl apply -f kube_files/*"
                     }
                 }
             }
