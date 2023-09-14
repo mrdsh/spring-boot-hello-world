@@ -1,3 +1,5 @@
+def APP_NAME = "spring-boot-hello-world"
+
 pipeline {
     agent any
     stages {
@@ -29,6 +31,7 @@ pipeline {
             steps {
                 script {
                     def BUILD_NUM = env.BUILD_ID
+                    sh "cd kube_file && kustomize   edit set image ${APP_NAME}:${env.BUILD_ID}"
                     withKubeConfig([credentialsId: 'kube_config']) {
                         sh "kubectl apply -n my-apps -k kube_file"
                     }
